@@ -49,7 +49,7 @@ const Sidebar = () => {
               </li>
               <li className="p-4 hover:bg-gray-100 flex items-center space-x-3">
                 <GroupIcon />
-                <Link to="/community" className="text-gray-700">Community</Link>
+                <Link to="/clubs" className="text-gray-700">Clubs</Link>
               </li>
               <li className="p-4 hover:bg-gray-100 flex items-center space-x-3">
                 <AssignmentIcon />

@@ -4,8 +4,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import ProjectDetails from "./pages/ProjectDetails";
-import Projects from "./pages/Projects"; // Import Projects page
-import Sidebar from "./components/Sidebar"; // Ensure Sidebar is imported
+import Projects from "./pages/Projects";
+import Sidebar from "./components/Sidebar";
+import Clubs from "./pages/Clubs";
+import ClubView from "./pages/ClubView";
 
 const App = () => {
   return (
@@ -36,6 +38,22 @@ const App = () => {
           element={
             <Layout>
               <ProjectDetails />
+            </Layout>
+          }
+        />
+        <Route
+          path="/clubs"
+          element={
+            <Layout>
+              <Clubs />
+            </Layout>
+          }
+        />
+        <Route
+          path="/club/:id"
+          element={
+            <Layout>
+              <ClubView />
             </Layout>
           }
         />
