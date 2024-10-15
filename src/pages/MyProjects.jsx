@@ -9,7 +9,12 @@ export default function MyProjects() {
   ];
   return (
     <div>
-      <div className="text-4xl font-bold p-6">My Projects</div>
+      <div className="p-6 flex justify-between continer mx-auto">
+        <div className="text-4xl font-bold">My Projects</div>
+        <button className="mt-4 px-4 py-2 bg-accentBlue text-white rounded-md hover:bg-blue-500 transition-all duration-300">
+          Add Project +
+        </button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 px-6">
         {projects.map((project, index) => (
           <PersonalProjectTile
