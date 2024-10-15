@@ -1,0 +1,28 @@
+/* Custom Calendar Styles */
+.custom-calendar {
+    border: none;
+    width: 100%;
+  }
+  
+  .custom-calendar .react-calendar__tile {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-calendar .react-calendar__tile--active {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .custom-calendar .react-calendar__tile--now {
+    background: #e0e7ff;
+    color: #1e3a8a;
+  }
+  
+  .custom-calendar .react-calendar__tile:hover {
+    background-color: #93c5fd;
+  }
+  

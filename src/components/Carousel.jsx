@@ -28,39 +28,38 @@ const Carousel = () => {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto mt-6 px-10">
-    <div className="overflow-hidden rounded-lg shadow-lg relative h-72 md:h-96">
-      {carouselData.map((item, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-            index === current ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <div className="flex h-full">
-            <div className="flex-grow flex items-center justify-center">
-              <div className="absolute inset-0 opacity-70 bg-gradient-to-r from-blue-900 to-transparent" />
-              <div className="p-6 z-10">
-                <h2 className="text-black text-3xl md:text-4xl font-bold">{item.title}</h2>
-                <p className="text-black text-lg md:text-xl mt-2">{item.description}</p>
+    <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
+      <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
+        {carouselData.map((item, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === current ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div className="flex h-full">
+              <div className="flex-grow flex items-center justify-center bg-white-800 bg-opacity-50">
+                <div className="p-4 md:p-6 text-center z-10 text-black">
+                  <h2 className="text-xl md:text-3xl font-bold">{item.title}</h2>
+                  <p className="mt-2 text-sm md:text-lg">{item.description}</p>
+                </div>
               </div>
+              <img src={item.image} alt={item.title} className="w-1/3 h-full object-cover" />
             </div>
-            <img src={item.image} alt={item.title} className="w-1/3 h-72 md:h-96 object-cover" />
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
 
       {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-900 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-900 text-white p-2 rounded-full shadow-md transition-all duration-300"
       >
         &#10094;
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-900 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-900 text-white p-2 rounded-full shadow-md transition-all duration-300"
       >
         &#10095;
       </button>
@@ -71,7 +70,7 @@ const Carousel = () => {
           <button
             key={index}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === current ? 'bg-white' : 'bg-gray-400'
+              index === current ? 'bg-black' : 'bg-gray-400'
             }`}
             onClick={() => setCurrent(index)}
           />

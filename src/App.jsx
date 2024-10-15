@@ -5,10 +5,12 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
-import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";  
 import Clubs from "./pages/Clubs";
 import ClubView from "./pages/ClubView";
 import MyProjects from "./pages/MyProjects";
+import Chatbot from "./pages/Chatbot"; // Import the Chatbot component
+import { FaRobot } from "react-icons/fa"; // Import FaRobot
 
 const App = () => {
   return (
@@ -17,7 +19,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
-        {/* All pages that require a sidebar */}
+        {/* All pages that require the Layout */}
         <Route
           path="/home"
           element={
@@ -66,17 +68,27 @@ const App = () => {
             </Layout>
           }
         />
+        <Route path="/chatbot" element={<Chatbot />} /> {/* Add Chatbot Route */}
       </Routes>
     </BrowserRouter>
   );
 };
 
-// Layout component to include Sidebar
+// Layout component definition inside the same file
 const Layout = ({ children }) => {
   return (
-    <div className="font-poppins text-textBlue min-h-screen flex">
-      <Sidebar />
-      <main className="flex-1 p-4">{children}</main>
+    <div className="font-poppins text-textBlue min-h-screen">
+      <Navbar />
+      <main className="p-4">{children}</main>
+
+      {/* Floating Chatbot Button */}
+      <button
+        className="fixed bottom-8 right-8 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center"
+        onClick={() => (window.location.href = "/chatbot")}
+      >
+        <FaRobot className="mr-2" />
+        Chatbot
+      </button>
     </div>
   );
 };
