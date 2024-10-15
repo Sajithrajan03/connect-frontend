@@ -8,6 +8,7 @@ import Projects from "./pages/Projects";
 import Sidebar from "./components/Sidebar";
 import Clubs from "./pages/Clubs";
 import ClubView from "./pages/ClubView";
+import MyProjects from "./pages/MyProjects";
 
 const App = () => {
   return (
@@ -38,6 +39,14 @@ const App = () => {
           element={
             <Layout>
               <ProjectDetails />
+            </Layout>
+          }
+        />
+        <Route
+          path="/myprojects"
+          element={
+            <Layout>
+              <MyProjects />
             </Layout>
           }
         />
