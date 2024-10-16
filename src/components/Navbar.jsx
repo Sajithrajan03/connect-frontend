@@ -43,6 +43,10 @@ const Navbar = () => {
             <HomeIcon />
             <span>Home</span>
           </Link>
+          <Link to="/home2" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+            <HomeIcon />
+            <span>Home2</span>
+          </Link>
           <Link to="/forums" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
             <ForumIcon />
             <span>Forums</span>
@@ -59,10 +63,10 @@ const Navbar = () => {
             <AssignmentIcon />
             <span>Projects</span>
           </Link>
-          <Link to="/support" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          {/* <Link to="/support" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
             <SupportIcon />
             <span>Support</span>
-          </Link>
+          </Link> */}
           <Link to="/profile" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
             <PersonIcon />
             <span>Profile</span>
