@@ -19,13 +19,11 @@ const Navbar = () => {
 
   return (
     <div className="relative">
-  
       <div className="flex items-center justify-between bg-white shadow-md p-4">
         <div className="flex items-center">
           <span className="font-bold text-xl text-primary mr-4">CONNECT</span>
         </div>
 
-       
         <button
           onClick={toggleNavbar}
           className="md:hidden text-primary focus:outline-none"
@@ -37,29 +35,50 @@ const Navbar = () => {
           )}
         </button>
 
-      
-        <div className={`hidden md:flex space-x-6 ${isOpen ? "block" : "hidden"} md:block`}>
-          <Link to="/home" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+        <div
+          className={`hidden md:flex space-x-6 ${
+            isOpen ? "block" : "hidden"
+          } md:block`}
+        >
+          <Link
+            to="/home"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <HomeIcon />
             <span>Home</span>
           </Link>
-          <Link to="/faculty" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/faculty"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <HomeIcon />
             <span>Home2</span>
           </Link>
-          <Link to="/forums" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/forums"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <ForumIcon />
             <span>Forums</span>
           </Link>
-          <Link to="/myprojects" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/myprojects"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <FaProjectDiagram />
             <span>My Projects</span>
           </Link>
-          <Link to="/clubs" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/clubs"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <GroupIcon />
             <span>Clubs</span>
           </Link>
-          <Link to="/projects" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/projects"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <AssignmentIcon />
             <span>Projects</span>
           </Link>
@@ -67,42 +86,72 @@ const Navbar = () => {
             <SupportIcon />
             <span>Support</span>
           </Link> */}
-          <Link to="/profile" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/myprofile"
+            className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+          >
             <PersonIcon />
             <span>Profile</span>
           </Link>
         </div>
       </div>
 
-     
       {isOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg z-50">
           <nav className="flex flex-col space-y-4 p-4">
-            <Link to="/home" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/home"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <HomeIcon />
               <span>Home</span>
             </Link>
-            <Link to="/forums" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/forums"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <ForumIcon />
               <span>Forums</span>
             </Link>
-            <Link to="/myprojects" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/myprojects"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <FaProjectDiagram />
               <span>My Projects</span>
             </Link>
-            <Link to="/clubs" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/clubs"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <GroupIcon />
               <span>Clubs</span>
             </Link>
-            <Link to="/projects" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/projects"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <AssignmentIcon />
               <span>Projects</span>
             </Link>
-            <Link to="/support" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/support"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <SupportIcon />
               <span>Support</span>
             </Link>
-            <Link to="/profile" className="flex items-center space-x-2 text-gray-700 hover:text-primary" onClick={toggleNavbar}>
+            <Link
+              to="/myprofile"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary"
+              onClick={toggleNavbar}
+            >
               <PersonIcon />
               <span>Profile</span>
             </Link>
