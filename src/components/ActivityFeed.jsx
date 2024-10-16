@@ -33,7 +33,7 @@ const ActivityFeed = () => {
       likes: 23, 
       comments: 4 
     },
-    // Add more activity items here
+   
   ]);
 
   const handleFilterChange = (newFilter) => {
@@ -67,7 +67,7 @@ const ActivityFeed = () => {
     <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-xl p-6">
       <h2 className="text-2xl font-extrabold mb-6 text-gray-800">Activity Feed</h2>
       
-      {/* Filter Buttons */}
+      
       <div className="flex space-x-3 mb-6">
         {['All', 'Event', 'Publication', 'Hackathon'].map((category) => (
           <button
@@ -82,7 +82,7 @@ const ActivityFeed = () => {
         ))}
       </div>
 
-      {/* Activity List */}
+    
       <ul className="space-y-4">
         <AnimatePresence>
           {filteredActivities.length > 0 ? (
@@ -95,7 +95,7 @@ const ActivityFeed = () => {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Icon and Content */}
+                
                 <div className="flex items-center space-x-4">
                   <div className="text-2xl">
                     {getActivityIcon(activity.type)}
@@ -106,7 +106,7 @@ const ActivityFeed = () => {
                   </div>
                 </div>
 
-                {/* Like and Comment Actions */}
+             
                 <div className="flex items-center space-x-4 text-gray-500 mt-2">
                   <button
                     className="flex items-center space-x-1 hover:text-blue-500 transition-colors"

@@ -5,21 +5,40 @@ import ProjectTracker from '../components/ProjectTracker';
 import CalendarView from '../components/CalendarView';
 import ApplicantManagement from '../components/ApplicantManagement';
 import QuickProjectStats from '../components/QuickProjectStats';
+import VerificationRequests from '../components/VerificationRequests';
 
 const FacultyDashboard = () => {
-  // Example data for ongoing and completed projects
+  
   const ongoingProjects = 5;
   const completedProjects = 12;
 
+
+  const verificationRequestsData = [
+    {
+      studentName: 'Alice Johnson',
+      projectName: 'AI Research Project',
+      role: 'Team Lead',
+      details: 'Worked on developing machine learning models for predicting outcomes.',
+    },
+    {
+      studentName: 'Bob Smith',
+      projectName: 'Web Development Project',
+      role: 'Frontend Developer',
+      details: 'Designed the user interface and integrated API services.',
+    },
+    
+  ];
+
   return (
     <div className="font-poppins text-textBlue min-h-screen p-4 flex">
-      {/* Left Column: Quick Project Stats and Applicant Management */}
+      
       <div className="w-1/4 pr-4">
         <QuickProjectStats ongoing={ongoingProjects} completed={completedProjects} />
         <ApplicantManagement />
+        <VerificationRequests requests={verificationRequestsData} /> 
       </div>
 
-      {/* Center Column: Activity Feed */}
+     
       <div className="w-2/4 px-4">
         <div className="mb-6">
           <Carousel />
@@ -27,7 +46,6 @@ const FacultyDashboard = () => {
         <ActivityFeed />
       </div>
 
-      {/* Right Column: Calendar and Project Tracker */}
       <div className="w-1/4 pl-4">
         <div className="mb-6">
           <CalendarView />

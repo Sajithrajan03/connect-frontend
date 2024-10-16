@@ -9,4 +9,4 @@ const Chatbot = () => {
   );
 };
 
-export default Chatbot; // Make sure this is a default export
+export default Chatbot; 
