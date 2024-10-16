@@ -94,12 +94,12 @@ const Layout = ({ children }) => {
 
       {/* Floating Chatbot Button */}
       <button
-        className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300"
-        onClick={() => (window.location.href = "/chatbot")}
-        aria-label="Open Chatbot"
-      >
-        <FaRobot />
-      </button>
+  className="fixed bottom-8 right-8 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center"
+  onClick={() => window.open('http://localhost:8501', '_blank')}
+>
+  <FaRobot className="mr-2" />
+  Chatbot
+</button>
     </div>
   );
 };
