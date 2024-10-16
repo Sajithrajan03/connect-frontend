@@ -5,11 +5,12 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
-import Navbar from "./components/Navbar";  
+import Navbar from "./components/Navbar";
 import Clubs from "./pages/Clubs";
 import ClubView from "./pages/ClubView";
 import MyProjects from "./pages/MyProjects";
 import Chatbot from "./pages/Chatbot";
+import MyProfile from "./pages/MyProfile";
 import { FaRobot } from "react-icons/fa";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
@@ -54,6 +55,14 @@ const App = () => {
           }
         />
         <Route
+          path="/myprofile"
+          element={
+            <Layout>
+              <MyProfile />
+            </Layout>
+          }
+        />
+        <Route
           path="/clubs"
           element={
             <Layout>
@@ -69,7 +78,7 @@ const App = () => {
             </Layout>
           }
         />
-        
+
         <Route
           path="/faculty"
           element={
