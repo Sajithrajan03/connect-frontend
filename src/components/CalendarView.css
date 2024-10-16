@@ -1,28 +1,75 @@
-/* Custom Calendar Styles */
+/* CalendarView.css */
+
+/* Custom Calendar Container */
 .custom-calendar {
     border: none;
     width: 100%;
   }
   
+  /* Calendar Tile Styles */
   .custom-calendar .react-calendar__tile {
     text-align: center;
     padding: 10px;
     background: white;
-    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
     transition: background-color 0.3s;
   }
   
   .custom-calendar .react-calendar__tile--active {
-    background: #3b82f6;
-    color: white;
+    background: #fef3c7; /* Light yellow */
+    color: #374151;
+    border-color: #f59e0b;
   }
   
   .custom-calendar .react-calendar__tile--now {
-    background: #e0e7ff;
+    background: #dbeafe; /* Light blue */
     color: #1e3a8a;
+    border-color: #3b82f6;
   }
   
   .custom-calendar .react-calendar__tile:hover {
     background-color: #93c5fd;
+  }
+  
+  /* Calendar Navigation Buttons */
+  .custom-calendar .react-calendar__navigation button {
+    color: #374151;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 0 5px;
+    outline: none;
+  }
+  
+  /* Highlight the Today Button */
+  .custom-calendar .react-calendar__navigation button:focus,
+  .custom-calendar .react-calendar__navigation button:hover {
+    color: #1e40af; /* Darker blue */
+  }
+  
+  /* Event List Styling */
+  .event-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .event-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #d1d5db;
+  }
+  
+  .event-item:last-child {
+    border-bottom: none;
+  }
+  
+  .event-item .event-time {
+    margin-left: auto;
+    font-size: 0.9em;
+    color: #6b7280;
   }
   

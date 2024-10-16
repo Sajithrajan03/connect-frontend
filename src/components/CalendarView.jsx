@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import './CalendarView.css'; 
+import './CalendarView.css'; // Import the custom styles
 import { motion } from 'framer-motion';
 import { FaPlus, FaClock } from 'react-icons/fa';
 
@@ -44,41 +44,45 @@ const CalendarView = () => {
   const eventsForSelectedDate = events[selectedDate.toISOString().split('T')[0]] || [];
 
   return (
-    <div className="flex space-x-6 bg-white rounded-lg shadow-xl p-6">
-      {/* Calendar on the Left */}
-      <div className="w-1/2">
-        <h2 className="text-xl font-bold mb-4 text-gray-700">Select a Date</h2>
+    <div className="flex flex-col bg-white rounded-lg shadow-xl p-6 h-full">
+      {/* Header with "Select a Date" and "+" button */}
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-700">Calendar</h2>
+        <button
+          className="w-8 h-8 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
+          onClick={() => setIsModalOpen(true)}
+        >
+          <FaPlus />
+        </button>
+      </div>
+
+      {/* Calendar */}
+      <div className="flex-1">
         <Calendar
           onChange={handleDateChange}
           value={selectedDate}
           className="custom-calendar"
         />
-        <button
-          className="mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors duration-300"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <FaPlus className="inline-block mr-2" /> Add New Reminder
-        </button>
       </div>
 
-      {/* Events and Reminders on the Right */}
-      <div className="w-1/2">
+      {/* Events section at the bottom */}
+      <div className="mt-6">
         <h2 className="text-xl font-bold mb-4 text-gray-700">
-          Events on {selectedDate.toDateString()}
+          Events for {selectedDate.toDateString()}
         </h2>
-        <ul className="space-y-4">
+        <ul className="event-list">
           {eventsForSelectedDate.length > 0 ? (
             eventsForSelectedDate.map((event, index) => (
               <motion.li
                 key={index}
-                className="p-4 bg-gray-100 rounded-lg shadow-md flex justify-between items-center"
+                className="event-item"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <div>
                   <p className="text-lg font-semibold text-gray-700">{event.name}</p>
-                  <p className="text-sm text-gray-500 flex items-center">
-                    <FaClock className="mr-2" />
+                  <p className="event-time">
+                    <FaClock className="mr-1" />
                     {event.time}
                   </p>
                 </div>
