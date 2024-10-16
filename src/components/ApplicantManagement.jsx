@@ -6,7 +6,7 @@ const ApplicantManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sortBy, setSortBy] = useState('name');
 
-  // Sample project data with applicants
+
   const projects = [
     {
       name: 'Lam Project',
@@ -44,13 +44,13 @@ const ApplicantManagement = () => {
     },
   ];
 
-  // Function to open the modal with selected project applicants
+
   const handleProjectClick = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
 
-  // Function to close the modal
+ 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
@@ -60,7 +60,7 @@ const ApplicantManagement = () => {
     <div className="bg-white rounded-lg shadow-lg p-6">
       <h2 className="text-2xl font-bold text-gray-700 mb-4">Project Applicant Management</h2>
 
-      {/* Project List */}
+      
       <div className="space-y-4">
         {projects.map((project, index) => (
           <div
@@ -76,7 +76,7 @@ const ApplicantManagement = () => {
         ))}
       </div>
 
-      {/* Modal for Applicants List */}
+     
       {isModalOpen && selectedProject && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-2/3">
@@ -101,7 +101,7 @@ const ApplicantManagement = () => {
                   key={index}
                   className="p-4 border rounded-lg shadow-md flex justify-between items-center bg-gray-100 hover:shadow-lg transition-shadow"
                 >
-                  {/* Left Section */}
+                
                   <div>
                     <p className="text-lg font-bold text-gray-800">{applicant.name}</p>
                     <p className="text-gray-600">
@@ -120,7 +120,7 @@ const ApplicantManagement = () => {
                     </div>
                   </div>
 
-                  {/* Right Section - Scores */}
+               
                   <div className="text-right">
                     <p className="text-2xl font-bold text-green-600">{applicant.tps.toFixed(2)}</p>
                     <p className="text-sm text-gray-500">Capacity: {applicant.capacity}</p>

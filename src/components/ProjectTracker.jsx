@@ -7,7 +7,7 @@ const ProjectTracker = () => {
     { name: 'AI Research', level: 'Medium', status: 'Completed', points: 3 },
     { name: 'Web Development', level: 'Difficult', status: 'In Progress', points: 5 },
     { name: 'Data Science', level: 'Easy', status: 'Not Started', points: 1 },
-    // More projects here
+    
   ];
 
   const statusIcons = {
@@ -33,7 +33,7 @@ const ProjectTracker = () => {
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Project Details */}
+           
             <div className="flex items-center space-x-3">
               <div className="text-2xl">
                 {statusIcons[project.status]}
@@ -44,7 +44,6 @@ const ProjectTracker = () => {
               </div>
             </div>
 
-            {/* Status and Points */}
             <div className="text-right">
               <p className={`text-md font-semibold ${project.status === 'Completed' ? 'text-green-600' : project.status === 'In Progress' ? 'text-yellow-600' : 'text-red-600'}`}>
                 {project.status}

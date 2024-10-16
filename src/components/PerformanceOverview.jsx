@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { motion } from 'framer-motion';
 
 const PerformanceOverview = () => {
-  const tps = 0.65; // Example TPS value
+  const tps = 0.65; 
   const thresholdLevel = 'Intermediate';
   const capacity = 7;
   const workload = 5;
@@ -22,9 +22,9 @@ const PerformanceOverview = () => {
     <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-xl p-6">
       <h2 className="text-2xl font-extrabold mb-6 text-gray-800">Performance Overview</h2>
       
-      {/* TPS and Threshold Section */}
+      
       <div className="flex items-center justify-between mb-6">
-        {/* Radial TPS Display */}
+        
         <div className="w-1/3">
           <CircularProgressbar
             value={tps * 100}
@@ -37,7 +37,7 @@ const PerformanceOverview = () => {
           />
         </div>
 
-        {/* Threshold Level Badge */}
+       
         <div className="ml-6">
           <motion.div
             whileHover={{ scale: 1.1 }}
@@ -48,7 +48,7 @@ const PerformanceOverview = () => {
         </div>
       </div>
 
-      {/* Capacity Section */}
+   
       <div className="mb-6">
         <p className="text-lg font-medium mb-2 text-gray-700">Capacity: {workload} / {capacity}</p>
         <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
@@ -61,7 +61,7 @@ const PerformanceOverview = () => {
         </div>
       </div>
 
-      {/* TPS Breakdown (Optional) */}
+     
       <div className="mt-4">
         <h3 className="text-lg font-semibold text-gray-800 mb-2">TPS Breakdown</h3>
         <div className="flex justify-between text-sm text-gray-600">
