@@ -9,8 +9,9 @@ import Navbar from "./components/Navbar";
 import Clubs from "./pages/Clubs";
 import ClubView from "./pages/ClubView";
 import MyProjects from "./pages/MyProjects";
-import Chatbot from "./pages/Chatbot"; // Import the Chatbot component
-import { FaRobot } from "react-icons/fa"; // Import FaRobot
+import Chatbot from "./pages/Chatbot";
+import { FaRobot } from "react-icons/fa";
+import FacultyDashboard from "./pages/FacultyDashboard";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
-        {/* All pages that require the Layout */}
+        {/* All pages that use the Layout component */}
         <Route
           path="/home"
           element={
@@ -68,13 +69,23 @@ const App = () => {
             </Layout>
           }
         />
-        <Route path="/chatbot" element={<Chatbot />} /> {/* Add Chatbot Route */}
+        
+        <Route
+          path="/faculty"
+          element={
+            <Layout>
+              <FacultyDashboard />
+            </Layout>
+          }
+        />
+
+        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
-// Layout component definition inside the same file
+// Layout component definition
 const Layout = ({ children }) => {
   return (
     <div className="font-poppins text-textBlue min-h-screen">
@@ -83,11 +94,11 @@ const Layout = ({ children }) => {
 
       {/* Floating Chatbot Button */}
       <button
-        className="fixed bottom-8 right-8 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center"
+        className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300"
         onClick={() => (window.location.href = "/chatbot")}
+        aria-label="Open Chatbot"
       >
-        <FaRobot className="mr-2" />
-        Chatbot
+        <FaRobot />
       </button>
     </div>
   );

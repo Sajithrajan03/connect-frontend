@@ -50,11 +50,6 @@ const ProjectTracker = () => {
                 {project.status}
               </p>
               <p className="text-sm text-gray-600">Points: {project.points}</p>
-              {project.status === 'In Progress' && (
-                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                  <div className="bg-yellow-500 h-2.5 rounded-full" style={{ width: `${(project.points / 5) * 100}%` }}></div>
-                </div>
-              )}
             </div>
           </motion.li>
         ))}

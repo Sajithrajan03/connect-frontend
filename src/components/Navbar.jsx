@@ -43,7 +43,7 @@ const Navbar = () => {
             <HomeIcon />
             <span>Home</span>
           </Link>
-          <Link to="/home2" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+          <Link to="/faculty" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
             <HomeIcon />
             <span>Home2</span>
           </Link>
