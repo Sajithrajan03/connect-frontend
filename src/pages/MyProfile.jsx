@@ -33,7 +33,7 @@ export default function MyProfile() {
             alt="defaultProfilepic"
           />
         </div>
-        <div className="col-span-2 flex-col flex divide-y-2 w-fit border p-4 rounded-lg shadow-lg gap-4">
+        <div className="col-span-2 flex-col flex w-fit border p-4 rounded-lg shadow-lg gap-4">
           <div className="flex gap-4">
             <div className="font-bold">Name</div>
             <div className="text-black">Robert Evans</div>
