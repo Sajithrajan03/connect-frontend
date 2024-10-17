@@ -12,9 +12,9 @@ export default function MyProfile() {
  
   const data = {
     PROJECTS: [
-      { id: 1, name: "Project A", description: "A web app built using React and Node.js", status: "Completed", level: "Medium", verified: "Verified", faculty: "Dr. Ritwik M" },
-      { id: 2, name: "Project B", description: "An Android app for task management", status: "Ongoing", level: "Easy", verified: "Unverified", faculty: "" },
-      { id: 3, name: "Project C", description: "A machine learning model for image classification", status: "Dropped", level: "Difficult", verified: "Unverified", faculty: "" },
+      { id: 1, name: "Sony Project", description: "A web app built using React and Node.js", status: "Completed", level: "Medium", verified: "Verified", faculty: "Dr. Ritwik M" },
+      { id: 2, name: "PiSave", description: "An Android app for task management", status: "Ongoing", level: "Easy", verified: "Unverified", faculty: "" },
+      { id: 3, name: "Library Management", description: "A machine learning model for image classification", status: "Dropped", level: "Difficult", verified: "Unverified", faculty: "" },
     ],
     PAPERS: [
       { id: 1, title: "Research Paper A", status: "Published", verified: "Verified", faculty: "Prof. Anisha" },
@@ -60,13 +60,13 @@ export default function MyProfile() {
     
     <div className="space-y-4 w-1/2">
       <div className="text-2xl font-bold text-blue-800 mb-4">Profile Information</div>
-      <ProfileInfo label="Name" value="Robert Evans" />
-      <ProfileInfo label="Roll No" value="CB.EN.U4CSE21347" />
+      <ProfileInfo label="Name" value="Sajith Rajan" />
+      <ProfileInfo label="Roll No" value="CB.EN.U4CSE21052" />
       <ProfileInfo label="Branch" value="Computer Science" />
       <ProfileInfo label="Course" value="B Tech" />
-      <ProfileInfo label="College" value="CET" />
-      <ProfileInfo label="Semester" value="8" />
-      <ProfileInfo label="Passed Out Year" value="2022" />
+      <ProfileInfo label="College" value="Amrita Vishwa Vidhyapeetham" />
+      <ProfileInfo label="Semester" value="7" />
+      <ProfileInfo label="Passed Out Year" value="2025" />
       <ProfileInfo label="Career Path" value="Software Engineer" />
     </div>
 

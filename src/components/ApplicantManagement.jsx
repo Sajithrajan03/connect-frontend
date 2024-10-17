@@ -12,7 +12,7 @@ const ApplicantManagement = () => {
       name: 'Lam Project',
       applicants: [
         {
-          name: 'John Doe',
+          name: 'Sai Manikanta',
           role: 'Developer',
           tps: 0.75,
           commitmentScore: 0.85,
@@ -20,7 +20,7 @@ const ApplicantManagement = () => {
           projectLevel: 'Medium',
         },
         {
-          name: 'Jane Smith',
+          name: 'Hasanthi',
           role: 'Analyst',
           tps: 0.45,
           commitmentScore: 0.55,

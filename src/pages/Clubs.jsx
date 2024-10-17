@@ -1,8 +1,6 @@
-// Clubs.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Dummy club data
 const clubs = [
   {
     id: 1,
@@ -26,21 +24,37 @@ const clubs = [
 
 const Clubs = () => {
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-14">Clubs</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {clubs.map((club) => (
-          <Link to={`/club/${club.id}`} key={club.id}>
-            <div className="rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <img src={club.banner} alt={club.name} className="w-full h-40 object-cover" />
-              <div className="p-4">
-                <h2 className="text-xl font-semibold">{club.name}</h2>
-                <p className="text-gray-600 mt-2">{club.description}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
+    <div className="container mx-auto py-6">
+      <div className="p-6 bg-gradient-to-r from-blue-50 to-white rounded-lg shadow-lg mb-8">
+        <h1 className="text-4xl font-bold text-gray-800 text-center">Clubs</h1>
       </div>
+      
+      {clubs.length === 0 ? (
+        <div className="text-center text-gray-500 text-xl mt-8">
+          No clubs available at the moment. Check back later!
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+          {clubs.map((club) => (
+            <Link to={`/club/${club.id}`} key={club.id}>
+              <div className="rounded-lg overflow-hidden shadow-md bg-white transition-all duration-300 hover:shadow-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-white">
+                <img
+                  src={club.banner}
+                  alt={club.name}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h2 className="text-2xl font-semibold text-gray-800">{club.name}</h2>
+                  <p className="text-gray-600 mt-2">{club.description}</p>
+                  <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition-colors duration-300">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

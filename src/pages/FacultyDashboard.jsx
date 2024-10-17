@@ -15,13 +15,13 @@ const FacultyDashboard = () => {
 
   const verificationRequestsData = [
     {
-      studentName: 'Alice Johnson',
-      projectName: 'AI Research Project',
+      studentName: 'Sajith Rajan',
+      projectName: 'Sign Langauge Detection',
       role: 'Team Lead',
       details: 'Worked on developing machine learning models for predicting outcomes.',
     },
     {
-      studentName: 'Bob Smith',
+      studentName: 'Ramya C',
       projectName: 'Web Development Project',
       role: 'Frontend Developer',
       details: 'Designed the user interface and integrated API services.',
