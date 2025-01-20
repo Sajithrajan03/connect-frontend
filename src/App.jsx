@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
@@ -78,7 +78,6 @@ const App = () => {
             </Layout>
           }
         />
-
         <Route
           path="/faculty"
           element={
@@ -87,8 +86,14 @@ const App = () => {
             </Layout>
           }
         />
-
-        <Route path="/chatbot" element={<Chatbot />} />
+        <Route
+          path="/chatbot"
+          element={
+            <Layout>
+              <Chatbot />
+            </Layout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
@@ -96,19 +101,28 @@ const App = () => {
 
 // Layout component definition
 const Layout = ({ children }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="font-poppins text-textBlue min-h-screen">
-      <Navbar />
-      <main className="p-4">{children}</main>
+      {/* Fixed Navbar */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <Navbar />
+      </div>
+
+      {/* Main content with top padding to account for fixed navbar */}
+      <main className="p-4 mt-16">
+        {children}
+      </main>
 
       {/* Floating Chatbot Button */}
       <button
-  className="fixed bottom-8 right-8 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center"
-  onClick={() => window.open('http://localhost:8501', '_blank')}
->
-  <FaRobot className="mr-2" />
-  Chatbot
-</button>
+        className="fixed bottom-8 right-8 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 flex items-center z-50"
+        onClick={() => navigate('/chatbot')}
+      >
+        <FaRobot className="mr-2" />
+        Chatbot
+      </button>
     </div>
   );
 };
