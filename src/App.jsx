@@ -16,20 +16,16 @@ import MyProfile from "./pages/MyProfile";
 import { FaRobot } from "react-icons/fa";
 import FacultyDashboard from "./pages/FacultyDashboard";
 
-// Protected Route wrapper component
-const ProtectedRoute = ({ children }) => {
-  // Check for authentication (you can modify this based on your auth implementation)
-  const isAuthenticated = localStorage.getItem("token"); // or any other auth check
 
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = localStorage.getItem("token"); 
   if (!isAuthenticated) {
-    // Redirect to login if not authenticated
     return <Navigate to="/login" replace />;
   }
-
   return children;
 };
 
-// Layout component for authenticated pages
+
 const Layout = ({ children }) => {
   const navigate = useNavigate();
 
@@ -62,101 +58,22 @@ const App = () => {
         <Route path="/forgot-credentials" element={<Forgotcred />} />
         <Route path="/otp-verification" element={<OTPInput />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        
+        {/* 🆓 Home is now public */}
+        <Route path="/home" element={<Layout><Home /></Layout>} />
 
-        {/* Protected Routes with Layout */}
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Home />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Projects />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/projectDetails"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <ProjectDetails />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/myprojects"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <MyProjects />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/myprofile"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <MyProfile />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/clubs"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Clubs />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/club/:id"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <ClubView />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/faculty"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <FacultyDashboard />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/chatbot"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Chatbot />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
+        {/* Protected Routes */}
+        <Route path="/projects" element={ <Layout><Projects /></Layout> } />
+        <Route path="/projectDetails" element={ <Layout><ProjectDetails /></Layout> } />
+        <Route path="/myprojects" element={ <Layout><MyProjects /></Layout> } />
+        <Route path="/myprofile" element={ <Layout><MyProfile /></Layout> } />
+        <Route path="/clubs" element={ <Layout><Clubs /></Layout> } />
+        <Route path="/club/:id" element={ <Layout><ClubView /></Layout> } />
+        <Route path="/faculty" element={ <Layout><FacultyDashboard /></Layout> } />
+        <Route path="/chatbot" element={ <Layout><Chatbot /></Layout> } />
 
-        {/* Catch all unknown routes and redirect to login */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {/* Catch-all unknown routes */}
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </BrowserRouter>
   );
