@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { Eye, EyeOff, LogIn, ArrowRight, Sparkles } from "lucide-react";
+import { Eye, EyeOff, LogIn, ArrowRight, Infinity } from "lucide-react";
 import loginImage from "../assets/login.png";
 
 const Login = () => {
@@ -96,7 +96,7 @@ const Login = () => {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center space-x-2 mb-4"
             >
-             
+              <Infinity className="w-6 h-6 text-indigo-600" />
               <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
                 Connect
               </span>
