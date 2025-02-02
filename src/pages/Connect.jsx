@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion"
+import { useNavigate } from "react-router-dom";
 import { Users, FlaskConical, GraduationCap, UserPlus, Search, MessageSquare, Sparkles, ArrowRight } from "lucide-react"
 
 function FloatingPaths({ position }) {
@@ -154,14 +155,7 @@ function StickyCTA() {
           Join the Future of Academic Collaboration Today
         </h3>
         <div className="flex space-x-4">
-          <Button
-            variant="default"
-            size="lg"
-            className="bg-white text-indigo-600 hover:bg-indigo-50 rounded-full px-6"
-          >
-            Get Started
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
+          
           <Button
             variant="outline"
             size="lg"
@@ -175,23 +169,32 @@ function StickyCTA() {
   )
 }
 
+
+
 const Button = ({ children, variant = "default", size = "default", className = "", ...props }) => {
-  const baseStyles = "font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  const navigate = useNavigate();
+
+  const baseStyles = "font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500";
   const variantStyles = {
     default: "bg-indigo-600 text-white hover:bg-indigo-700",
     outline: "border border-indigo-600 text-indigo-600 hover:bg-indigo-50",
-  }
+  };
   const sizeStyles = {
     default: "px-4 py-2",
     lg: "px-6 py-3 text-lg",
-  }
+  };
 
   return (
-    <button className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`} {...props}>
+    <button
+      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      {...props}
+      onClick={() => navigate("/login")} 
+    >
       {children}
     </button>
-  )
-}
+  );
+};
+
 
 const Link = ({ href, children, className = "", ...props }) => {
   return (
@@ -377,17 +380,12 @@ export default function App({
                 variant="default"
                 size="lg"
                 className="rounded-full px-8 py-6 text-lg font-semibold bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                onClick={() => navigate("/login")}
               >
                 Get Started
-                <ArrowRight className="ml-2 w-5 h-5" />
+              
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full px-8 py-6 text-lg font-semibold bg-white/80 backdrop-blur-sm hover:bg-indigo-50 text-indigo-600 border-2 border-indigo-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Explore First
-              </Button>
+            
             </div>
           </motion.div>
         </div>
