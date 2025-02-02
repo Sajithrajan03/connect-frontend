@@ -12,13 +12,13 @@ function FloatingPaths({ position }) {
     } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
       684 - i * 5 * position
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    color: `rgba(99,102,241,${0.1 + i * 0.03})`,
-    width: 0.5 + i * 0.03,
-  }))
+    color: `rgba(79, 70, 229, ${0.6 + i * 0.05})`, // Darker shade of indigo
+    width: 0.8 + i * 0.04, // Slightly thicker strokes
+  }));
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <svg className="w-full h-full text-indigo-500/10" viewBox="0 0 696 316" fill="none">
+      <svg className="w-full h-full text-indigo-600/20" viewBox="0 0 696 316" fill="none">
         <title>Background Paths</title>
         {paths.map((path) => (
           <motion.path
@@ -26,11 +26,12 @@ function FloatingPaths({ position }) {
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={0.1 + path.id * 0.03}
-            initial={{ pathLength: 0.3, opacity: 0.6 }}
+            strokeOpacity={0.3 + path.id * 0.03} // Increased opacity for darker effect
+
+            initial={{ pathLength: 0.4, opacity: 0.8 }}
             animate={{
               pathLength: 1,
-              opacity: [0.3, 0.6, 0.3],
+              opacity: [0.4, 0.8, 0.4],
               pathOffset: [0, 1, 0],
             }}
             transition={{
@@ -42,7 +43,7 @@ function FloatingPaths({ position }) {
         ))}
       </svg>
     </div>
-  )
+  );
 }
 
 function FeatureCard({ icon: Icon, title, description }) {
