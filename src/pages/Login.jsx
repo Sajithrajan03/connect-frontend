@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import axios from "axios";
-import loginImage from "../assets/login.png"; // Update with the correct path
+import { Eye, EyeOff, LogIn, ArrowRight, Infinity } from "lucide-react";
+import loginImage from "../assets/login.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -20,6 +22,9 @@ const Login = () => {
         password,
       });
       console.log(response.data);
+      
+      // Animate before navigation
+      await new Promise(resolve => setTimeout(resolve, 500));
       navigate("/home");
     } catch (error) {
       console.error("There was an error!", error);
@@ -29,29 +34,100 @@ const Login = () => {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-      <div className="max-w-4xl w-full bg-white shadow-lg rounded-3xl flex items-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-blue-50 to-white p-6 overflow-hidden">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="max-w-4xl w-full bg-white shadow-2xl rounded-3xl flex items-center relative overflow-hidden"
+      >
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-blue-500" />
+        <div className="absolute -top-32 -left-32 w-64 h-64 bg-indigo-100 rounded-full blur-3xl opacity-60" />
+        <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-60" />
+
         {/* Left Side - Image */}
-        <div className="w-1/2 hidden md:flex justify-center items-center p-6">
-          <img src={loginImage} alt="Login" className="w-full h-auto object-cover rounded-l-3xl" />
-        </div>
+        <motion.div
+          variants={itemVariants}
+          className="w-1/2 hidden md:flex justify-center items-center p-8 relative"
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <img src={loginImage} alt="Login" className="w-full h-auto object-cover rounded-2xl shadow-lg" />
+          </motion.div>
+        </motion.div>
 
         {/* Right Side - Login Form */}
-        <div className="w-full md:w-1/2 p-8">
-          <div className="text-center">
-            <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Welcome Back</h2>
-            <p className="mt-2 text-sm text-gray-600">Log in to access your account</p>
+        <motion.div
+          variants={itemVariants}
+          className="w-full md:w-1/2 p-8 md:p-12"
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center space-x-2 mb-4"
+            >
+              <Infinity className="w-6 h-6 text-indigo-600" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
+                Connect
+              </span>
+            </motion.div>
+            <motion.h2
+              variants={itemVariants}
+              className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent tracking-tight"
+            >
+              Welcome Back
+            </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="mt-2 text-sm text-gray-600"
+            >
+              Log in to access your account
+            </motion.p>
           </div>
 
-          <form className="mt-8 space-y-6" onSubmit={handleLogin}>
-            <div className="space-y-4">
+          <motion.form
+            variants={containerVariants}
+            className="space-y-6"
+            onSubmit={handleLogin}
+          >
+            <motion.div variants={itemVariants} className="space-y-4">
               {/* Username Input */}
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                   Username
                 </label>
-                <input
+                <motion.input
+                  whileFocus={{ scale: 1.01 }}
                   id="username"
                   name="username"
                   type="text"
@@ -69,7 +145,8 @@ const Login = () => {
                   Password
                 </label>
                 <div className="relative">
-                  <input
+                  <motion.input
+                    whileFocus={{ scale: 1.01 }}
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
@@ -79,48 +156,67 @@ const Login = () => {
                     className="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition duration-300"
                     placeholder="Enter your password"
                   />
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute inset-y-0 right-3 flex items-center"
                   >
                     {showPassword ? (
-                      <svg className="h-5 w-5 text-gray-500 hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
+                      <Eye className="h-5 w-5 text-gray-500 hover:text-indigo-500 transition" />
                     ) : (
-                      <svg className="h-5 w-5 text-gray-500 hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                      </svg>
+                      <EyeOff className="h-5 w-5 text-gray-500 hover:text-indigo-500 transition" />
                     )}
-                  </button>
+                  </motion.button>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Submit Button */}
-            <button
+            <motion.button
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isLoading}
               className={`w-full py-3 px-4 rounded-xl text-white font-medium tracking-wide 
-                ${isLoading ? "bg-indigo-400" : "bg-indigo-600 hover:bg-indigo-700 transform hover:scale-105"}
-                focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 shadow-lg`}
+                ${isLoading ? "bg-indigo-400" : "bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-500 hover:to-blue-400"}
+                focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 shadow-lg flex items-center justify-center gap-2`}
             >
-              {isLoading ? "Logging in..." : "Log In"}
-            </button>
+              {isLoading ? (
+                <>
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                  />
+                  <span>Logging in...</span>
+                </>
+              ) : (
+                <>
+                  <LogIn className="w-5 h-5" />
+                  <span>Log In</span>
+                </>
+              )}
+            </motion.button>
 
             {/* Forgot Password */}
-            <div className="text-center mt-4">
-              <p className="text-sm text-gray-600">
-                <Link to="/forgot-credentials" className="font-medium text-indigo-600 hover:text-indigo-500 transition">
-                  Forgot your username or password?
-                </Link>
-              </p>
-            </div>
-          </form>
-        </div>
-      </div>
+            <motion.div
+              variants={itemVariants}
+              className="text-center mt-6"
+            >
+              <Link
+                to="/forgot-credentials"
+                className="group inline-flex items-center text-sm text-indigo-600 hover:text-indigo-500 transition"
+              >
+                Forgot your username or password?
+                <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </motion.form>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

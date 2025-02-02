@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import axios from "axios";
+import { ShieldCheck, ArrowRight, Loader2 } from "lucide-react";
 
 const OTPInput = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -11,9 +13,8 @@ const OTPInput = () => {
   const location = useLocation();
   const email = location.state?.email || "";
 
-  // Handle OTP Input Change & Auto Focus
   const handleChange = (index, value) => {
-    if (isNaN(value)) return; // Prevent non-numeric input
+    if (isNaN(value)) return;
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -29,13 +30,12 @@ const OTPInput = () => {
     }
   };
 
-  // Handle OTP Submission
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setMessage("");
 
-    const otpCode = otp.join(""); // Convert OTP array to string
+    const otpCode = otp.join("");
     if (otpCode.length !== 6) {
       setMessage("Please enter all 6 digits.");
       setIsLoading(false);
@@ -62,17 +62,40 @@ const OTPInput = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-      <div className="max-w-md w-full bg-white shadow-2xl rounded-2xl p-8 border border-gray-200 transition-all duration-300">
-        
-        {/* Header */}
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold text-gray-900">Enter OTP Code</h2>
-          <p className="mt-2 text-sm text-gray-600">A 6-digit code has been sent to your email.</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-blue-50 to-white p-6 overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-2xl w-full bg-white shadow-2xl rounded-3xl p-12 border border-gray-200 relative overflow-hidden"
+      >
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-blue-500" />
+        <div className="text-center mb-6">
+          <motion.h2
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent"
+          >
+            Enter OTP Code
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className="mt-2 text-sm text-gray-600"
+          >
+            A 6-digit code has been sent to your email.
+          </motion.p>
         </div>
 
-        {/* OTP Input Fields */}
-        <form className="mt-6 space-y-6" onSubmit={handleVerifyOTP}>
+        <motion.form
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-6"
+          onSubmit={handleVerifyOTP}
+        >
           <div className="flex justify-center space-x-3">
             {otp.map((digit, index) => (
               <input
@@ -88,30 +111,38 @@ const OTPInput = () => {
             ))}
           </div>
 
-          {/* Submit Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isLoading}
             className={`w-full py-3 px-4 rounded-xl text-white font-medium tracking-wide 
-              ${isLoading ? "bg-indigo-400" : "bg-indigo-600 hover:bg-indigo-700 transform hover:scale-105"}
-              focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 shadow-lg`}
+              ${isLoading ? "bg-indigo-400" : "bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-500 hover:to-blue-400"}
+              focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 shadow-lg flex items-center justify-center gap-2`}
           >
-            {isLoading ? "Verifying..." : "Verify OTP"}
-          </button>
+            {isLoading ? (
+              <>
+                <Loader2 className="animate-spin w-5 h-5" />
+                <span>Verifying...</span>
+              </>
+            ) : (
+              <>
+                <ShieldCheck className="w-5 h-5" />
+                <span>Verify OTP</span>
+              </>
+            )}
+          </motion.button>
 
-          {/* Error Message */}
           {message && <p className="text-center text-sm text-red-600 mt-2">{message}</p>}
 
-          {/* Back to Forgot Credentials */}
-          <div className="text-center mt-4">
-            <p className="text-sm text-gray-600">
-              <a href="/forgot-credentials" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-200">
-                Resend OTP Code
-              </a>
-            </p>
-          </div>
-        </form>
-      </div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} className="text-center mt-6">
+            <a href="/forgot-credentials" className="group inline-flex items-center text-sm text-indigo-600 hover:text-indigo-500 transition">
+              Resend OTP Code
+              <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
+        </motion.form>
+      </motion.div>
     </div>
   );
 };

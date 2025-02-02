@@ -15,6 +15,7 @@ import Chatbot from "./pages/Chatbot";
 import MyProfile from "./pages/MyProfile";
 import { FaRobot } from "react-icons/fa";
 import FacultyDashboard from "./pages/FacultyDashboard";
+import Connect from "./pages/Connect";
 
 
 const ProtectedRoute = ({ children }) => {
@@ -51,9 +52,10 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Redirect root path to login */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/connect" replace />} />
 
         {/* Public Routes */}
+        <Route path="/connect" element={<Connect />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-credentials" element={<Forgotcred />} />
         <Route path="/otp-verification" element={<OTPInput />} />

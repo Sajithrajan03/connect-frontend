@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import axios from "axios";
+import { Mail, ArrowRight, Loader2 } from "lucide-react";
 
 const Forgotcred = () => {
   const [email, setEmail] = useState("");
@@ -35,64 +37,105 @@ const Forgotcred = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-      <div className="max-w-lg w-full bg-white shadow-2xl rounded-2xl p-8 border border-gray-200 transition-all duration-300">
-        {/* Header */}
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold text-gray-900">Forgot Credentials?</h2>
-          <p className="mt-2 text-sm text-gray-600">Enter your university email to reset your credentials.</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-blue-50 to-white p-6 overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-2xl w-full bg-white shadow-2xl rounded-3xl p-12 border border-gray-200 relative overflow-hidden"
+      >
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-blue-500" />
+        <div className="absolute -top-32 -left-32 w-64 h-64 bg-indigo-100 rounded-full blur-3xl opacity-60" />
+        <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-60" />
+
+        <div className="text-center mb-6">
+          <motion.h2
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent"
+          >
+            Forgot Credentials?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className="mt-2 text-sm text-gray-600"
+          >
+            Enter your university email to receive a verification code.
+          </motion.p>
         </div>
 
-        {/* Form */}
-        <form className="mt-6 space-y-6" onSubmit={handleResetRequest}>
+        <motion.form
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-6"
+          onSubmit={handleResetRequest}
+        >
           {/* Email Input */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               University Email
             </label>
-            <input
-              id="email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
-              placeholder="Enter your university email"
-            />
+            <div className="relative">
+              <motion.input
+                whileFocus={{ scale: 1.01 }}
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition duration-300"
+                placeholder="Enter your university email"
+              />
+              <Mail className="absolute inset-y-3 right-3 w-5 h-5 text-gray-500" />
+            </div>
           </div>
 
           {/* Submit Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isLoading}
             className={`w-full py-3 px-4 rounded-xl text-white font-medium tracking-wide 
-              ${isLoading ? "bg-indigo-400" : "bg-indigo-600 hover:bg-indigo-700 transform hover:scale-105"}
-              focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 shadow-lg`}
+              ${isLoading ? "bg-indigo-400" : "bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-500 hover:to-blue-400"}
+              focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 shadow-lg flex items-center justify-center gap-2`}
           >
             {isLoading ? (
-              <svg className="animate-spin h-5 w-5 mx-auto text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
+              <>
+                <Loader2 className="animate-spin w-5 h-5" />
+                <span>Sending...</span>
+              </>
             ) : (
-              "Send OTP Code"
+              <>
+                <ArrowRight className="w-5 h-5" />
+                <span>Send OTP Code</span>
+              </>
             )}
-          </button>
+          </motion.button>
 
           {/* Success/Error Messages */}
           {message && <p className="text-center text-sm text-green-600 mt-2">{message}</p>}
           {error && <p className="text-center text-sm text-red-600 mt-2">{error}</p>}
 
           {/* Back to Login */}
-          <div className="text-center mt-4">
-            <p className="text-sm text-gray-600">
-              <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-200">
-                Back to Login
-              </a>
-            </p>
-          </div>
-        </form>
-      </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className="text-center mt-6"
+          >
+            <a href="/login" className="group inline-flex items-center text-sm text-indigo-600 hover:text-indigo-500 transition">
+              Back to Login
+              <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
+        </motion.form>
+      </motion.div>
     </div>
   );
 };
